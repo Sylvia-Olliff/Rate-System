@@ -1,0 +1,17 @@
+{
+  "name": "debug-reader",
+  "version": "1.0.0",
+  "description": "serves debug information in realtime. ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+  	"express": "latest",
+  	"ejs" : "~0.8.5",
+  	"socket.io" : "latest",
+    "socket.io-stream" : "latest"
+  },
+  "author": "Joe Olliff",
+  "license": "ISC"
+}

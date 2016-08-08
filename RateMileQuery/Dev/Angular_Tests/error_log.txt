@@ -1,0 +1,40 @@
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+
+Error 42601:Token ) was not valid. Valid tokens: ( + - ? : DAY INF NAN NOT RID ROW RRN CASE CAST CHAR DATE DAYS. SQLCODE=-104
+

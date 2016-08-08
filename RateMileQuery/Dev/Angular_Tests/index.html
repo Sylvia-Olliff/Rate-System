@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html ng-app="RateMileQuery">
+  <head>
+    <meta name="generator" content="WebSmart" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>Rate Mile Query</title>
+    
+    <link rel="stylesheet" type="text/css" href="/websmart/v10.6/Sonora/css/jquery-ui.custom.css"/>	
+    <link rel="stylesheet" type="text/css" href="/websmart/v10.6/Sonora/css/screen.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/websmart/v10.6/Sonora/css/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./view.css"/>
+    
+    <script type="text/javascript" src="/websmart/v10.6/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/autoNumeric.js"></script>
+    
+    <script type="text/javascript">
+    	jQuery(function() {
+    		var sendData;
+			var activeState;
+			var errorMsg = "";
+			var previousSelection = "2";
+		
+			var dialog = $( "<div> </div>" )
+				.html("<p></p>")
+				.dialog({	
+					dialogClass: "no-close",
+      				autoOpen: false,
+      				height: 330,
+      				width: 375,
+      				title: "Error Invalid Entry",
+      				modal: true,
+      				buttons: {
+        				"Confirm": function() {
+        					dialog.dialog( "close" );
+        				},
+        				Cancel: function() {
+          					dialog.dialog( "close" );
+        				}
+			      	},
+      				close: function() {
+        			dialog.dialog( "close" );
+      			}
+    		});
+    		
+    		$('#EFFDATE').datepicker({
+				numberOfMonths: 1,
+				dateFormat: 'yymmdd'
+			}).datepicker("setDate", new Date());
+    		
+    		$(".state").blur(function() {
+				activeState = $(this);
+				var states = /^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/
+				if(!states.test(activeState.val().toUpperCase()) && activeState.val() != "" 
+					&& $("#ORIGIN").val() == "US" && $("#DESTIN").val() == "US") {
+					activeState.focus();
+					dialog.html("<p>Invalid Sate Code! Please Enter a Valid Sate Code</p>");
+					dialog.dialog("open");
+				}
+			});
+			
+			$(".entry").blur(function(){
+  				$(this).val( $(this).val().toUpperCase() );
+			});
+			
+			$('#MILES').keypress(function(evt) {
+				var charCode = (evt.which) ? evt.which : evt.keyCode;
+				if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+					evt.preventDefault();
+				}
+				return true;
+			});
+    		
+    		$("#filter-form").on("submit", function(event) {
+				if(!validateView()) {	
+					event.preventDefault();
+					activeState.focus();
+					dialog.html("");
+					dialog.html(errorMsg);
+					dialog.dialog("open");	
+					errorMsg = "";
+				} 
+			});
+			
+			function validateView() {
+				var isValid = true;
+				var effDate = $('#EFFDATE').val();
+				
+				if(effDate == "") {
+					errorMsg = errorMsg + "<p>Must Select an Effective Date.</p>";
+					isValid = false;
+					activeState = $('#EFFDATE');	
+				}
+				
+				if(($('#FCITY').val() == "" || $('#FSTATE').val() == "" || $('#TCITY').val() == "" || $('#TSTATE').val() == "") 
+				    && ($('#FCITY').val() != "" || $('#FSTATE').val() != "" || $('#TCITY').val() != "" || $('#TSTATE').val() != "")) {
+					if($('#MILES').val() == "") {
+						activeState = $(this);
+						errorMsg += "<p>If a city, state to city, state request is not provided, mileage must be included</p>";
+						isValid = false;
+					}	
+				} else {
+					$('#MILES').val("");
+				}
+				
+				$(".city").each(function(i){		
+					var currentCity = $(this);
+					if(jQuery.trim(currentCity.val()) != "")
+					{	
+						if(jQuery.trim(currentCity.parent().next().children().next().val()) == "")
+						{
+							console.log(jQuery.trim(currentCity.parent().next().children().next()));
+							activeState = $(this).parent().next().children();
+							errorMsg = errorMsg + "<p>You must enter a State Code when entering a City.</p>";
+							isValid = false;
+						}
+					} 
+				});
+				
+				$(".zip").each(function(i){
+					var currentZip = $(this).val();	
+					if(currentZip < 100 && currentZip != "") {
+						activeState = $(this);
+						errorMsg = errorMsg + "<p>Zip codes must be at least 3 digits.</p>";
+						isValid = false;
+					} 
+				});
+				
+				if($('#FCITY').val() == "" && $('#FSTATE').val() == "" && $('#FZIP').val() == "") {
+					   	errorMsg = errorMsg + "<p>You must enter Origin search criteria.</p>";
+					   	activeState = $('#FCITY');
+					   	isValid = false;
+				}
+				
+				if($('#TCITY').val() == "" && $('#TSTATE').val() == "" && $('#TZIP').val() == "") {
+						errorMsg = errorMsg + "<p>You must enter Destination search criteria.</p>";
+					   	activeState = $('#TCITY');
+					   	isValid = false;
+				}
+				
+				return isValid;
+			}
+			
+    	});
+    </script>    
+  </head>
+  <body ng-controller="QueryController as QueryCtrl" class="content-fluid">
+    <div id="outer-content">
+    <br />
+      <div id="page-divider-top" class="page-divider"></div>
+      <div id="page-content">
+        <div id="content-header">
+        	<br />
+         	<h2 class="title">Rate Mile Query</h2>
+        </div>
+        <div id="contents"> 
+          	<form name="filter-form" class="filter" ng-submit="QueryCtrl.querySearch(QueryCtrl)" novalidate>
+	          	<input id="task" type="hidden" name="task" value="genForm"/>
+	            <div id="filters">	
+	              <span class="filter-group">
+	              	<table id="SETTINGS"> 
+	                  <tr>
+	                  	<td class="col-md-2">
+	                  	  <label for="FCITY" class="bg-info">From City</label>
+	                  	  <input id="FCITY" class="entry city" type="text" name="FCITY" ng-model="QueryCtrl.queryData.FCITY" title="Origin City" size="30" maxlength="30" /> 
+	                  	</td>
+	                  	<td class="col-md-2">
+	                  	  	<label for="FSTATE" class="bg-info">State/Prov</label>
+	                  	  	<input name="FSTATE" class="entry state" type="text" name="FSTATE" ng-model="QueryCtrl.queryData.FSTATE" title="Origin State" size="5" ng-minlength="2" ng-maxlength="2" ng-pattern="/^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/"/> 
+	                  	</td>
+	                  	<td class="col-md-2">
+	                  	  <label for="FZIP" class="bg-info">From Zip</label>
+	                  	  <input id="FZIP" class="entry zip" type="text" name="FZIP" ng-model="QueryCtrl.queryData.FZIP" title="Origin Zip" size="6" maxlength="6" /> 
+	                  	</td>
+	                  	<td class="col-md-2">
+	                  	  <label for="TCITY" class="bg-info">To City</label>
+	                  	  <input id="TCITY" class="entry city"  type="text" name="TCITY" ng-model="QueryCtrl.queryData.TCITY" title="Destination City" size="30" maxlength="30" /> 
+	                  	</td>
+	                  	<td class="col-md-2">
+		                  	<label for="TSTATE" class="bg-info">State/Prov</label><br />
+		                  	<input id="TSTATE" class="entry state"  type="text" name="TSTATE" ng-model="QueryCtrl.queryData.TSTATE" title="Destination State" size="5" ng-minlength="2" ng-maxlength="2" ng-pattern="/^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/"/> 
+	                  	</td>
+	                  	<td class="col-md-2">
+	                  	  <label for="TZIP" class="bg-info">To Zip</label><br />
+	                  	  <input id="TZIP" class="entry zip" type="text" name="TZIP" ng-model="QueryCtrl.queryData.TZIP" title="Destination Zip" size="6" maxlength="6" /> 
+	                  	</td>
+	                 </tr>
+	                 <tr><td><br /></td></tr>
+	                 <tr>
+	                 	<td class="col-md-2">
+	                  		<label for="MODE" class="bg-info">MODE: </label><br />
+	                  		<select ng-model="QueryCtrl.queryData.MODE" ng-options="mode.value as mode.displayName for mode in QueryCtrl.MODES" name="MODE" id="MODE">
+	                  		</select>
+	                  	</td>
+	                  	<td class="col-md-2">
+	                	  <label for="ORIGIN" class="bg-info">Org Country: </label>
+	                	  <select ng-model="QueryCtrl.queryData.OCOUNTRY" ng-init="QueryCtrl.queryData.OCOUNTRY = 'US'" name="ORIGIN" id="ORIGIN">
+	                	    <option value="US" selected>US</option>
+	                	    <option value="CA">CA</option>
+	                  	    <option value="MX">MX</option>
+	                	  </select>
+	                	</td>
+	                	<td class="col-md-2">
+	                	  <label for="DESTIN" class="bg-info">Des Country: </label>
+	                	  <select ng-model="QueryCtrl.queryData.DCOUNTRY" ng-init="QueryCtrl.queryData.DCOUNTRY = 'US'" name="DESTIN" id="DESTIN">
+	                	    <option value="US" selected>US</option>
+	                	    <option value="CA">CA</option>
+	                	    <option value="MX">MX</option>
+	                	  </select>
+	                	</td>
+	                	<td class="col-md-2">
+	                  	  <label for="MILES" class="bg-info">Miles</label><br />
+	                  	  <input id="MILES" class="entry miles" type="text" name="MILES" ng-model="QueryCtrl.queryData.MILES" title="Miles" size="6" maxlength="6" /> 
+	                  	</td>
+	                	<td class="col-md-2">
+	                	<label for="EFFDATE" class="bg-info">Effective Date</label>
+	                	<input id="EFFDATE" type="text" name="EFFDATE" ng-model="QueryCtrl.queryData.EFFDATE" size="8" maxlength="8" />
+	                	</td>
+	                	<td class="col-md-2">
+	                		<input id="filter-button" class="bg-primary full" type="submit" value="Search" />
+	                	</td>
+	                 </tr>
+	                </table>
+	                <br /><br />
+	              </span>
+	            </div>
+        	</form>
+        </div>
+
+        <div class="container" ng-show="QueryCtrl.show(QueryCtrl)">
+          	<div class="row">
+          		<table class="table table-striped header-fixed">
+					<thead>
+						<tr>
+							<th class="text-center bg-info col-md-3">NAME</th>
+							<th class="text-center bg-info">CONTACT</th>
+							<th class="text-center bg-info">BASE</th>
+							<th class="text-center bg-info">FUEL</th>
+							<th class="text-center bg-info">TOTAL</th>
+							<th class="text-center bg-info">MILES</th>
+							<th class="text-center bg-info">RPM</th>
+							<th class="text-center bg-info">COMMENTS</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center" ng-repeat="result in QueryCtrl.response track by $index"> 
+							<td id="carrierName" class="viewTD col-md-3">{{result.NAME | ampersand}}</td>
+							<td id="contact" class="viewTD">{{result.CONTACT}}<br />{{result.PHONE}}</td>
+							<td id="base" class="viewTD">{{result.BASE | currency : "$"}}</td>
+							<td id="fuel" class="viewTD ">{{result.FUELC | currency : "$"}}</td>
+							<td id="total" class="viewTD">{{result.TOTAL | currency : "$"}}</td>
+							<td id="mile" class="viewTD">{{result.MILE}}</td>
+							<td id="rpm" class="viewTD">{{result.RPM | currency : "$"}}</td>
+							<td id="note" class="viewTD">{{result.NOTE}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
+      </div>
+  </body>
+</html>

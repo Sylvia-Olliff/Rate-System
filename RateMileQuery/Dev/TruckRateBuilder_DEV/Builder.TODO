@@ -1,0 +1,39 @@
+ Quoting System: 
+   ☐ Add appropriate zip codes to the BNAMILEP File
+       NOTE: This will add the ability for the quoting system to match practical miles even when only zip to zip is provided.
+
+   ☐ Intigrate with Rand McNally
+       NOTE: necessary hooks
+
+   ☐ Build in detection for empty values on money, they are breaking JavaScript on the client side.
+
+   ✔ Rework the view results to place them in an array of object @done (16-07-11 16:35)
+       NOTE: Will need to look into how to sort an array of objects based on a single attribute of the objects. Maybe do an array of arrays.
+         
+
+
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✘ remove viewAccessorial.php and add the slection logic to the genView query as additional fields   @cancelled (16-06-24 09:00) @project(Quoting System)
+  NOTE: This may slowdown the initial page load
+ ✔ migrate in page CSS to a seperate CSS File  @done (16-06-24 09:00) @project(Quoting System)
+ ✔ add CSS tooltip formatting  @done (16-06-24 09:00) @project(Quoting System)
+ ✘ potentially restructure to match MVC format.  @cancelled (16-06-24 08:59) @project(Quoting System)
+ ✔ format the accessorial fields as tooltip divs/spans associated with the carrier/customer name @done (16-06-24 08:59) @project(Quoting System)
+ ✔ wrap div contents in another div with position: relative @done (16-06-24 08:58) @project(Quoting System)
+ ✔ in rebuild, add the error logger to the php program so that I can see what is going on with the SQL execution. @done (16-06-24 08:58) @project(Quoting System)
+ ✔ Remove child indicators from css (>)  @done (16-06-24 08:58) @project(Quoting System)
+ ✔ Fix NULL Fuel value issue. Something in the Fuel caluclation is null on the data for BLGY @done (16-06-13 09:33) @project(Quoting System)
+ ✔ Add ability to determine whether or not to use Short Miles or Practical Miles for a given route entry @done (16-06-10 12:41) @project(Quoting System)
+  NOTE: This either done by checking the RAFUEL field in the rate table or checking in order the customer, the carrier, and then the route.
+ ✔ enforce the entering of miles if a city, state to city,state precedence is not provided. @started(16-05-24 11:02) @done (16-06-07 08:32) @lasted(13 days, 21:30) @project(Quoting System)
+ ✔ calculate estimated cost based off of practical miles between the origin and destination selected @started(16-05-24 11:02) @done (16-06-07 08:32) @lasted(13 days, 21:30) @project(Quoting System)
+  NOTE: Use BNAFUELP and today's date to get current base fuel rate per mile. Then use BNASFUELP to look up the appropriate markup. Finally multiply the result by the practical miles for the quote. 
+ ✔ Add customer contact information to the rate quote @started(16-05-24 10:48) @done (16-06-07 08:32) @lasted(13 days, 21:44) @project(Quoting System)
+ ✔ Migrate the current project setting to a Dev Build @done (16-05-19 11:31) @project(Quoting System)
+ ✘ generate a quote using the calculated miles and selected lane rate @cancelled (16-05-19 10:22) @project(Quoting System)
+ ✘ (maybe) add excel upload processor for fuel tables  @cancelled (16-05-19 10:22) @project(Quoting System)
+ ✔ modify Fuel Table to meet specifications @done (16-05-19 10:22) @project(Quoting System)
+ ✔ calculate appropriate miles for a given origin and destination in the viewer @done (16-05-19 10:21) @project(Quoting System)

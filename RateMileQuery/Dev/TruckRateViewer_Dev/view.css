@@ -1,0 +1,89 @@
+body {
+    background-color: #E5FFFF;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+#SETTINGS {
+	width: 100%;
+    padding: 2px;	
+}
+
+#SETTINGS td {
+	text-align: center;	
+    padding: 1px;
+}
+
+.container {
+	/*overflow-y: auto;*/
+	height: 450px;
+}
+
+.header {
+    height: 20px;
+}
+
+.header-fixed {
+    width: 90%; 
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    border-bottom: 5px;
+    clear: both;
+}
+
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 450px;
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    float: left;
+}
+
+.name-column {
+    width: 18%;
+}
+
+.contact-column, .comment-column {
+    width: 15%;
+}
+
+.normal-column {
+    width: 10.4%;
+}
+
+.viewTD {
+	padding: 10px 25px;
+	text-align: center;
+}
+
+.wrapper{
+    position:absolute;
+    width: 100%;
+}
+
+.outer{
+    position: relative;
+    width: 450px;
+}
+
+.loading-dialog .modal-dialog {
+    width: 30%;
+}
+

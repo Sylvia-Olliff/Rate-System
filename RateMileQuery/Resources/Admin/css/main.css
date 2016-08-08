@@ -1,0 +1,46 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+pre {
+	white-space: pre-wrap;
+}
+
+.c-panel {
+	padding: 10px;
+}
+
+.btn-c-panel {
+	margin-left: 6px;
+}
+
+.scrollable {
+	overflow-y: auto;
+	overflow-x: fixed;
+	max-height: 500px;
+	max-width: 50%;
+}
+
+.logger {
+	margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

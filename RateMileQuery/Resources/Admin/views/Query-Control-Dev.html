@@ -1,0 +1,79 @@
+<script type="text/javascript" src="/wsphp/RateMileQuery/Resources/Admin/node/node_modules/socket.io-client/socket.io.js"></script>
+<script type="text/javascript" src="/wsphp/RateMileQuery/Resources/Admin/js/log_receiver.js"></script>
+<script>
+	logConnect("query_Dev");
+</script>
+<h3 class="text-center col-md-12">
+	Rate Query Control Panel - Dev <button id="btn-back" class='btn btn-default'>Back</button>
+</h3>
+<div class="col-md-6">
+	<div class="well">
+		<table class="table table-bordered">
+			<thead>
+				<th>OPTION</th>
+				<th>ON/OFF</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<b>DEBUG ALL</b> <p>enable/disable all debugging options</p>
+					</td>
+					<td>
+						<button id="d-all" class="btn btn-info"></button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>DEBUG QUERY</b> <p>Toggles SQL statement generation debugging</p>
+					</td>
+					<td>
+						<button id="d-query" class="btn btn-info"></button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>DEBUG PRECS</b> <p>Toggles precedents debugging</p>
+					</td>
+					<td>
+						<button id="d-precs" class="btn btn-info"></button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b>DEBUG OUTPUT</b> <p>Toggles form generation debugging</p>
+					</td>
+					<td>
+						<button id="d-output" class="btn btn-info"></button>
+					</td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td>
+						<b>DISPLAY</b> <p>WARNING: This enables/disables the program</p>
+					</td>
+					<td>
+						<button id="display" class="btn btn-info"></button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br l>
+		<button id="update" class="btn btn-danger">Update</button>
+	</div>
+</div>
+<div class="col-md-6">
+	<div class="row">
+		<div class="well"> 
+			<button id="loggerStart" class="btn btn-success logger">Start Logging</button><button id="loggerStop" class="btn btn-success logger">Stop Logging</button>
+			<br /><br />
+			<button id="loggerClear" class="btn btn-success logger">Clear Log</button>
+			<br />
+			<div class="container">
+				<br /><br />
+				<div id="debugInfo">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
