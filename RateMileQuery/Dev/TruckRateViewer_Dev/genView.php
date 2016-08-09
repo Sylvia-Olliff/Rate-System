@@ -5,6 +5,7 @@
 	require 'viewAccessorial.php';
 	require 'errorLogger.php';
 	require 'settings.php';
+	
 	global $selString;
 	global $PRECS;
 	global $miles;
